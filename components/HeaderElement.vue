@@ -1,18 +1,18 @@
 <template>
   <div>
-    <header :class="$style.header">
-      <Button
+    <header :class="$style.headerElement">
+      <ButtonElement
         :primary="false"
-        ariaLabel="Toggle menu"
+        aria-label="Toggle menu"
         :class="$style.burgerMenu"
         @click="isSidebarOpen = true"
       >
         <span>&#9472;</span>
         <span>&#9472;</span>
         <span>&#9472;</span>
-      </Button>
+      </ButtonElement>
       <nav :class="$style.leftSection">
-        <NuxtLink to="/" :class="$style.logo">Nuxt</NuxtLink>
+        <NuxtLink to="/" :class="$style.logo">Next</NuxtLink>
         <div :class="$style.navLinks">
           <NavigationLink href="/search">All products</NavigationLink>
           <NavigationLink href="/search?max-price=20">Cheapest</NavigationLink>
@@ -26,42 +26,40 @@
             placeholder="Search..."
             v-model="searchValue"
           />
-          <Button
+          <ButtonElement
             :primary="false"
             :class="$style.searchButton"
             @click="handleSearch"
           >
             Go
-          </Button>
+          </ButtonElement>
         </div>
       </div>
       <div :class="$style.rightSection">
-        <Button
+        <ButtonElement
           :primary="true"
           :badge="itemsInCart"
           @click="setIsCartOpen(true)"
-          :class="$style.button"
         >
           Cart
-        </Button>
+        </ButtonElement>
       </div>
     </header>
     <aside
-      :aria-hidden="!isSidebarOpen"
       :class="[
         $style.headerSidebar,
         isSidebarOpen ? $style.open : $style.closed,
       ]"
     >
       <div :class="$style.headerSidebarElement">
-        <Button
+        <ButtonElement
           :primary="false"
-          ariaLabel="Close menu"
+          aria-label="Close menu"
           :class="$style.closeButton"
           @click="isSidebarOpen = false"
         >
           &times;
-        </Button>
+        </ButtonElement>
         <div :class="$style.title">Menu</div>
       </div>
       <div :class="$style.content">
@@ -72,7 +70,7 @@
             placeholder="Search..."
             v-model="searchValue"
           />
-          <Button
+          <ButtonElement
             :primary="false"
             :class="$style.searchButton"
             @click="
@@ -83,22 +81,22 @@
             "
           >
             Go
-          </Button>
+          </ButtonElement>
         </div>
         <div :class="$style.sidebarNav">
-          <Button
+          <ButtonElement
             :primary="false"
             :class="$style.sidebarButton"
             @click="
               () => {
                 isSidebarOpen = false;
-                router.push({ path: '/search' });
+                router.push('/search');
               }
             "
           >
             All products
-          </Button>
-          <Button
+          </ButtonElement>
+          <ButtonElement
             :primary="false"
             :class="$style.sidebarButton"
             @click="
@@ -109,39 +107,36 @@
             "
           >
             Cheapest
-          </Button>
+          </ButtonElement>
         </div>
       </div>
     </aside>
   </div>
 </template>
 
-<script setup lang="ts">
-import type { CartProduct } from "~/types";
-
+<script lang="ts" setup>
 const router = useRouter();
 const { cartProducts, setIsCartOpen } = useCart();
 const searchValue = ref("");
 const isSidebarOpen = ref(false);
 
 const itemsInCart = computed(() =>
-  cartProducts.value.reduce(
-    (prev: number, next: CartProduct) => prev + next.quantity,
-    0
-  )
+  cartProducts.value.reduce((prev, next) => prev + next.quantity, 0)
 );
 
-const handleSearch = () => {
-  router.push({
-    path: "/search",
-    query: { q: searchValue.value },
-  });
+function handleSearch() {
+  const cleanedSearchValue = searchValue.value.trim();
+  if (cleanedSearchValue !== "") {
+    router.push({ path: "/search", query: { q: searchValue.value } });
+  } else {
+    router.push("/search");
+  }
   searchValue.value = "";
-};
+}
 </script>
 
 <style module>
-.header {
+.headerElement {
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -210,7 +205,7 @@ const handleSearch = () => {
 }
 
 @media (max-width: 767px) {
-  .header {
+  .headerElement {
     flex-wrap: wrap;
     align-items: flex-start;
   }
@@ -228,6 +223,7 @@ const handleSearch = () => {
   }
 }
 
+/* header drawer */
 .headerSidebar {
   position: fixed;
   top: 0;
@@ -288,7 +284,7 @@ const handleSearch = () => {
   gap: 1rem;
 }
 
-.sidebarButton {
+.sidebarButton.sidebarButton {
   padding: 0;
   border: 0;
   width: fit-content;

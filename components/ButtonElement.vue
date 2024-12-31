@@ -1,38 +1,33 @@
 <template>
   <button
     :aria-label="ariaLabel"
-    :class="
-      [
-        $style.button,
-        primary ? $style.primaryButton : $style.secondaryButton,
-        className,
-      ]
-        .filter(Boolean)
-        .join(' ')
-    "
+    :class="[
+      $style.buttonElement,
+      primary ? $style.primaryButton : $style.secondaryButton,
+      className,
+    ]"
     @click="onClick"
   >
     <slot />
-    <template v-if="badge && badge > 0">
-      <span :class="$style.badge">{{ badge }}</span>
-    </template>
+    <span v-if="badge && badge > 0" :class="$style.badge">{{ badge }}</span>
   </button>
 </template>
 
-<script setup lang="ts">
-interface ButtonProps {
+<script lang="ts" setup>
+interface ButtonElementProps {
+  ariaLabel?: string;
   onClick?: () => void;
   primary: boolean;
   className?: string;
+  children?: any;
   badge?: number;
-  ariaLabel?: string;
 }
 
-defineProps<ButtonProps>();
+defineProps<ButtonElementProps>();
 </script>
 
 <style module>
-.button {
+.buttonElement {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: none;

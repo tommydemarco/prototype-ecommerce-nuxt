@@ -1,7 +1,7 @@
 <template>
   <div
     @click="closeCart"
-    :class="[$style.backdrop, isCartOpen ? $style.open : $style.closed]"
+    :class="[$style.backdropLayer, isCartOpen ? $style.open : $style.closed]"
   ></div>
 </template>
 
@@ -14,7 +14,7 @@ const closeCart = () => {
 </script>
 
 <style module>
-.backdrop {
+.backdropLayer {
   z-index: 1;
   position: fixed;
   background-color: transparent;
@@ -26,7 +26,7 @@ const closeCart = () => {
   transition: background-color 0.3s ease;
 }
 
-.backdrop.open {
+.backdropLayer.open {
   background-color: rgba(0, 0, 0, 0.365);
   width: 100%;
   height: 100%;

@@ -1,0 +1,158 @@
+<template>
+  <div :class="$style.container">
+    <div :class="$style.imageContainer">
+      <NuxtImg
+        :src="productImages[0]"
+        :alt="product.name"
+        width="80"
+        height="80"
+        :class="$style.image"
+      />
+      <button
+        name="remove product"
+        @click="() => removeProductFromCart(product)"
+        :class="$style.remove"
+      >
+        &times;
+      </button>
+    </div>
+    <div :class="$style.info">{{ product.name }}</div>
+    <div :class="$style.actions">
+      <div :class="$style.totalPrice">${{ itemPrice }}</div>
+      <div :class="$style.counter">
+        <button
+          :disabled="product.quantity === 1"
+          :class="$style.button"
+          @click="() => decrement(product)"
+        >
+          -
+        </button>
+        <span :class="$style.value">{{ product.quantity }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import type { CartProduct as CartProductType } from "@/types";
+
+interface CartProductProps {
+  product: CartProductType;
+  decrementProductFromCart: (product: CartProductType) => void;
+  removeProductFromCart: (product: CartProductType) => void;
+}
+
+defineProps<CartProductProps>();
+
+const props = defineProps<CartProductProps>();
+const itemPrice = computed(() => props.product.quantity * props.product.price);
+
+const productImages = [
+  "/images/garden-trowel-1.webp",
+  "/images/garden-trowel-2.webp",
+  "/images/garden-trowel-3.webp",
+];
+
+function decrement(product: CartProductType) {
+  if (product.quantity > 1) props.decrementProductFromCart(product);
+}
+</script>
+
+<style module>
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid var(--color-dark-2);
+}
+
+.imageContainer {
+  flex-shrink: 0;
+  position: relative;
+  padding-right: 10px;
+  max-width: 80px;
+}
+
+.imageContainer img {
+  max-width: 100%;
+  height: auto;
+}
+
+.totalPrice {
+  text-align: end;
+  padding-bottom: 10px;
+}
+
+.info {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.actions {
+  padding-left: 10px;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.remove {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  padding: 5px;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  font-size: 1.2rem;
+  border: 1px solid var(--color-dark-2);
+  background-color: var(--color-dark-1);
+  color: var(--color-light-1);
+  cursor: pointer;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-dark-2);
+}
+
+.value {
+  font-weight: bold;
+  color: var(--color-light-1);
+  text-align: center;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  color: var(--color-light-1);
+  border: none;
+  border-right: 1px solid var(--color-dark-2);
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}
+</style>

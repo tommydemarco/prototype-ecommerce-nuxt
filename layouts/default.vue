@@ -1,11 +1,12 @@
 <template>
   <div :class="$style.cotainer">
-    <Header />
+    <HeaderElement />
     <main :class="$style.main">
       <slot />
     </main>
     <CartDrawer />
-    <Footer />
+    <BackdropLayer />
+    <FooterElement />
   </div>
 </template>
 

@@ -11,25 +11,21 @@ import type {
 } from "vue-router";
 
 interface NavigationLinkProps {
-  href:
-    | string
-    | RouteLocationAsRelativeGeneric
-    | RouteLocationAsPathGeneric
-    | undefined;
+  href: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
 }
 
 defineProps<NavigationLinkProps>();
 </script>
 
 <style module>
-.link {
+.navigationLink {
   text-decoration: none;
   color: var(--color-light-2);
   font-size: 1rem;
   text-align: start;
 }
 
-.link:hover {
+.navigationLink:hover {
   text-decoration: underline;
 }
 </style>

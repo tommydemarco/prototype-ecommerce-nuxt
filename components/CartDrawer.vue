@@ -2,28 +2,25 @@
   <div :class="[$style.cartDrawer, isCartOpen ? $style.open : $style.closed]">
     <div :class="$style.header">
       <div :class="$style.title">Your cart</div>
-      <Button
+      <ButtonElement
         :primary="false"
-        alt-desc="close"
+        ariaLabel="close"
         :class="$style.closeButton"
-        @click="setIsCartOpen(false)"
+        @click="closeCart"
       >
         &times;
-      </Button>
+      </ButtonElement>
     </div>
     <div :class="$style.content">
       <template v-if="cartProducts.length">
-        <div
-          v-for="cartProduct in cartProducts"
-          :key="cartProduct.product_id"
-          :class="$style.productsContainer"
-        >
-          <!-- <CartProduct
+        <div :class="$style.productsContainer">
+          <CartProduct
+            v-for="cartProduct in cartProducts"
+            :key="cartProduct.product_id"
             :product="cartProduct"
             :decrementProductFromCart="decrementProductFromCart"
             :removeProductFromCart="removeProductFromCart"
-          /> -->
-          div
+          />
         </div>
         <div :class="$style.cartInfo">
           <div :class="$style.infoItem">
@@ -36,11 +33,11 @@
           </div>
           <div :class="$style.infoItem">
             <span>Total</span>
-            <span>${{ cartTotal }}</span>
+            <span>${{ cartTotal.toFixed(2) }}</span>
           </div>
-          <Button :primary="true" :class="$style.checkoutButton">
+          <ButtonElement :primary="true" :class="$style.checkoutButton">
             Proceed to checkout
-          </Button>
+          </ButtonElement>
         </div>
       </template>
       <template v-else>
@@ -50,7 +47,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const {
   cartProducts,
   isCartOpen,
@@ -60,11 +57,15 @@ const {
 } = useCart();
 
 const cartTotal = computed(() =>
-  cartProducts?.value.reduce(
+  cartProducts.value.reduce(
     (prev, next) => prev + next.quantity * next.price,
     0
   )
 );
+
+function closeCart() {
+  setIsCartOpen(false);
+}
 </script>
 
 <style module>
@@ -125,7 +126,7 @@ const cartTotal = computed(() =>
 }
 
 .productsContainer {
-  padding: 0.5rem 2rem;
+  padding: 1rem 2rem;
   flex: 1;
 }
 
