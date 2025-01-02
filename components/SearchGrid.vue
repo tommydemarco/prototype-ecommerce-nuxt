@@ -16,8 +16,8 @@
           v-if="isLoading"
           v-for="n in 6"
           :key="n"
-          width="1"
-          height="1"
+          :width="1"
+          :height="1"
         />
         <template v-else-if="searchResults.length > 0">
           <ProductCard

@@ -2,13 +2,14 @@
   <div :class="$style.container">
     <div :class="$style.leftColumn">
       <div :class="$style.imageContainer">
-        <nuxt-img
+        <NuxtImg
           :src="productImages[currentImageIndex]"
           :alt="product.name"
           width="550"
           height="550"
           :class="$style.mainImage"
-          :priority="true"
+          loading="eager"
+          preload
         />
         <div :class="$style.controls">
           <button
