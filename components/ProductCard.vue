@@ -1,0 +1,116 @@
+<template>
+  <NuxtLink
+    :to="`/products/${product.product_slug}`"
+    :title="product.name"
+    :class="[$style.container, $style[layoutType], className]"
+  >
+    <div :class="$style.imageContainer">
+      <NuxtImg
+        src="/images/garden-trowel-1.webp"
+        :alt="product.name"
+        width="400"
+        height="400"
+        :class="$style.mainImage"
+      />
+    </div>
+    <div :class="$style.info">
+      <div :class="$style.name">{{ product.name }}</div>
+      <div :class="$style.price">${{ product.price?.toFixed(2) }}</div>
+    </div>
+  </NuxtLink>
+</template>
+
+<script lang="ts" setup>
+import type { Product } from "@/types";
+
+interface ProductCardProps {
+  product: Product;
+  layoutType: "square" | "rectangular";
+  className?: string;
+  priorityImage?: boolean;
+}
+
+defineProps<ProductCardProps>();
+</script>
+
+<style module>
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-dark-2);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-light-2);
+  transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.container:hover {
+  border: 2px solid var(--color-primary);
+  cursor: pointer;
+}
+
+.square {
+  aspect-ratio: 1 / 1;
+}
+
+.rectangular {
+  aspect-ratio: 4 / 3.2;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+  height: 100%;
+}
+
+.mainImage {
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.container:hover .mainImage {
+  transform: scale(1.05);
+}
+
+.info {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  font-size: 1rem;
+  margin-right: 10px;
+  background-color: var(--color-dark-1);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-dark-2);
+}
+
+.name {
+  min-height: 44px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--color-light-2);
+}
+
+.price {
+  min-height: 44px;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  color: var(--color-light-1);
+  background-color: var(--color-primary);
+}
+</style>
