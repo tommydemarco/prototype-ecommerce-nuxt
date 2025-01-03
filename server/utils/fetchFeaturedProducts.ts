@@ -1,6 +1,6 @@
 import type { Product } from "@/types";
 import { MongoClient } from "mongodb";
-import { dbName, productsTableName } from "./dbConstants";
+import { dbName, productsTableName } from "@/server/utils/dbConstants";
 
 export async function fetchFeaturedProducts(
   client: MongoClient

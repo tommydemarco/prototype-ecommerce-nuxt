@@ -3,7 +3,7 @@
     <div :class="$style.filterTitle">{{ props.filterTitle }}</div>
     <ul :class="$style.desktopList">
       <li v-if="props.isLoading" v-for="number in [1, 2, 3, 4]" :key="number">
-        <SkeletonLoader :height="20" />
+        <SkeletonLoader :height="18" />
       </li>
       <li
         v-else
@@ -13,9 +13,7 @@
           [$style.activeItem]: activeItem?.name === item.name,
         }"
       >
-        <NavigationLink
-          :href="buildHref(route.path, currentParams.value as any, item)"
-        >
+        <NavigationLink :href="buildHref(route.path, item)">
           {{ item.name }}
         </NavigationLink>
       </li>
@@ -63,11 +61,7 @@ const route = useRoute();
 
 const currentParams = computed(() => ({ ...route.query }));
 
-const buildHref = (
-  basePath: string | null,
-  currentParams: Record<string, string>,
-  filterItem: FilterItem
-) => {
+const buildHref = (basePath: string | null, filterItem: FilterItem) => {
   const resolvedPathname =
     filterItem.path !== undefined
       ? filterItem.path
@@ -78,12 +72,12 @@ const buildHref = (
   const query = filterItem.query
     ? Object.fromEntries(
         Object.entries({
-          ...currentParams,
+          ...route.query,
           ...filterItem.query,
         }).filter(([_, value]) => value !== undefined)
       )
     : Object.fromEntries(
-        Object.entries(currentParams).filter(
+        Object.entries(route.query).filter(
           ([key]) => key !== "max-price" && key !== "q"
         )
       );
@@ -135,7 +129,6 @@ const handleSelectChange = (event: Event) => {
   if (selectedItem) {
     const { path: resolvedPathname, query } = buildHref(
       route.path,
-      currentParams.value as Record<string, string>,
       selectedItem
     );
     router.push({ path: resolvedPathname!, query });

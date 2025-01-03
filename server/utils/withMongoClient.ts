@@ -1,14 +1,10 @@
 import { MongoClient } from "mongodb";
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 export async function withMongoClient<T>(
   handler: (client: MongoClient) => Promise<T>
 ): Promise<T> {
-  const uri = process.env.MONGODB_URI;
-  const client = new MongoClient(uri!);
+  const { mongodbURI }: any = useRuntimeConfig();
+  const client = new MongoClient(mongodbURI);
 
   try {
     await client.connect();

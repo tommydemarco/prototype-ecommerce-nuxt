@@ -12,7 +12,7 @@
         <span>&#9472;</span>
       </ButtonElement>
       <nav :class="$style.leftSection">
-        <NuxtLink to="/" :class="$style.logo">Next</NuxtLink>
+        <NuxtLink to="/" :class="$style.logo">Nuxt</NuxtLink>
         <div :class="$style.navLinks">
           <NavigationLink href="/search">All products</NavigationLink>
           <NavigationLink href="/search?max-price=20">Cheapest</NavigationLink>

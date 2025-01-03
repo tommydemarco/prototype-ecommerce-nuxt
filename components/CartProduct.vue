@@ -42,8 +42,6 @@ interface CartProductProps {
   removeProductFromCart: (product: CartProductType) => void;
 }
 
-defineProps<CartProductProps>();
-
 const props = defineProps<CartProductProps>();
 const itemPrice = computed(() => props.product.quantity * props.product.price);
 

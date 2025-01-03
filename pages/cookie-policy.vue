@@ -1,0 +1,1 @@
+<template>Cookie policy</template>

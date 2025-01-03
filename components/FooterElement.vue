@@ -2,7 +2,7 @@
   <footer :class="$style.footerElement">
     <div :class="$style.container">
       <div :class="$style.topSection">
-        <div :class="$style.logo">Next</div>
+        <div :class="$style.logo">Nuxt</div>
         <div :class="$style.links">
           <NavigationLink href="/">Home</NavigationLink>
           <NavigationLink href="/about">About</NavigationLink>

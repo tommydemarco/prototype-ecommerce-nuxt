@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="href" :class="$style.link">
+  <NuxtLink :to="href" :class="$style.navigationLink">
     <slot />
   </NuxtLink>
 </template>

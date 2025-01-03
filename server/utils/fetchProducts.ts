@@ -4,7 +4,7 @@ import {
   categoriesTableName,
   dbName,
   productsTableName,
-} from "../utils/dbConstants";
+} from "@/server/utils/dbConstants";
 
 export interface ProductQueryParams {
   category?: string;
