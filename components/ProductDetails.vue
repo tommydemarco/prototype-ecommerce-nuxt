@@ -128,6 +128,8 @@ function addToCart() {
 
 .imageContainer {
   position: relative;
+  border-radius: 8px;
+  border: 2px solid var(--color-dark-2);
 }
 
 .mainImage {
@@ -150,7 +152,7 @@ function addToCart() {
 .arrow {
   background: var(--color-dark-1);
   color: var(--color-light-1);
-  border: 1px solid var(--color-dark-2);
+  border: 2px solid var(--color-dark-2);
   padding: 15px 20px;
   font-weight: bold;
   cursor: pointer;
@@ -168,7 +170,7 @@ function addToCart() {
   width: 80px;
   height: 80px;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 2px solid var(--color-dark-2);
   border-radius: 4px;
   overflow: hidden;
 }
