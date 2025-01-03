@@ -1,18 +1,6 @@
-import { H3Event } from "h3";
-import { fetchProducts } from "@/server/utils/fetchProducts";
-import { withMongoClient } from "@/server/utils/withMongoClient";
-
-export default defineEventHandler(async (event: H3Event) => {
+export default defineEventHandler(async (event) => {
   try {
-    if (getMethod(event) !== "GET") {
-      return sendError(
-        event,
-        createError({ statusCode: 405, message: "Method not allowed" })
-      );
-    }
-
     const query = getQuery(event);
-
     const { category, maxPrice, sortByPrice, searchText } = query;
 
     const products = await withMongoClient(async (client) => {
@@ -32,7 +20,6 @@ export default defineEventHandler(async (event: H3Event) => {
     setResponseHeader(event, "Cache-Control", "no-store");
     return products;
   } catch (error) {
-    console.error("Error fetching products:", error);
     return sendError(
       event,
       createError({ statusCode: 500, message: "Internal Server Error" })

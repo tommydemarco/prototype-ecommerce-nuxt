@@ -45,11 +45,7 @@ interface CartProductProps {
 const props = defineProps<CartProductProps>();
 const itemPrice = computed(() => props.product.quantity * props.product.price);
 
-const productImages = [
-  "/images/garden-trowel-1.webp",
-  "/images/garden-trowel-2.webp",
-  "/images/garden-trowel-3.webp",
-];
+const productImages = props.product.images;
 
 function decrement(product: CartProductType) {
   if (product.quantity > 1) props.decrementProductFromCart(product);

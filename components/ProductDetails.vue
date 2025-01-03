@@ -74,11 +74,7 @@ const { product } = defineProps<ProductDetailsProps>();
 const { addProductToCart, setIsCartOpen } = useCart();
 const currentImageIndex = ref(0);
 
-const productImages = [
-  "/images/garden-trowel-1.webp",
-  "/images/garden-trowel-2.webp",
-  "/images/garden-trowel-3.webp",
-];
+const productImages = product.images;
 
 function handlePrevImage() {
   currentImageIndex.value =

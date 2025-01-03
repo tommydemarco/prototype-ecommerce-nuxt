@@ -6,7 +6,7 @@
   >
     <div :class="$style.imageContainer">
       <NuxtImg
-        src="/images/garden-trowel-1.webp"
+        :src="product.images[0]"
         :alt="product.name"
         width="400"
         height="400"
