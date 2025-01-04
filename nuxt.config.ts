@@ -5,4 +5,8 @@ export default defineNuxtConfig({
   devServer: {
     port: 4000,
   },
+  modules: ["@nuxt/image"],
+  runtimeConfig: {
+    mongodbURI: process.env.MONGODB_URI,
+  },
 });

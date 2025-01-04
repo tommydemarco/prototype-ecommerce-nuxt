@@ -6,7 +6,7 @@
 const { data: pageData } = await useFetch(`/api/static-page-data`, {
   server: true,
   query: {
-    url: "about",
+    url: "privacy-policy",
   },
 });
 
