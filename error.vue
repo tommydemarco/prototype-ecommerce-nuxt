@@ -7,7 +7,6 @@
         Error: Unable to process your request. Please return later.
       </p>
       <p v-else>Page not found</p>
-      <div>error</div>
     </HtmlContent>
   </NuxtLayout>
 </template>
