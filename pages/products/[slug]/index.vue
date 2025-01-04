@@ -26,4 +26,14 @@ if (!productData?.value?.product) {
     fatal: true,
   });
 }
+
+useHead({
+  title: `${productData.value.product.name} | ${appName}`,
+  meta: [
+    {
+      name: "description",
+      content: productData.value.product.description,
+    },
+  ],
+});
 </script>

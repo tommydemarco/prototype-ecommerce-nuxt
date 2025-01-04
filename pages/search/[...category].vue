@@ -64,21 +64,33 @@ const queryParams = computed(() => ({
   searchText: (route.query["q"] || "") as string,
 }));
 
-const {
-  data: searchResults,
-  status: searchResultsStatus,
-  error: searchResultsError,
-} = useAsyncData(
+const { data: searchResults, status: searchResultsStatus } = useAsyncData(
   "searchResults",
   async () => {
     const query = new URLSearchParams(queryParams.value).toString();
-    const response = await $fetch(`/api/products?${query}`);
-    return response;
+    try {
+      const response = await $fetch(`/api/products?${query}`);
+      return response;
+    } catch {
+      return [];
+    }
   },
   { watch: [queryParams], server: false }
 );
 
-if (searchResultsError) {
-  throw createError({ statusCode: 405, fatal: true });
-}
+onBeforeRouteLeave((to, from) => {
+  if (from.path.startsWith("/search") && !to.path.startsWith("/search")) {
+    categories.value = null;
+  }
+});
+
+useHead({
+  title: `Search products | ${appName}`,
+  meta: [
+    {
+      name: "description",
+      content: appDescription,
+    },
+  ],
+});
 </script>

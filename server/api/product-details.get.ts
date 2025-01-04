@@ -8,8 +8,6 @@ export default defineEventHandler(async (event) => {
       return { product, suggestedProducts };
     });
 
-    console.log("PRODUCT DATA PRODUCT: ", productData.product);
-
     return productData;
   } catch (error) {
     return sendError(

@@ -10,8 +10,8 @@ const { data: pageData } = await useFetch(`/api/static-page-data`, {
   },
 });
 
-useHead(() => ({
+useHead({
   title: `${pageData?.value?.title} | ${appName}`,
   meta: [{ name: "description", content: pageData.value?.description || "" }],
-}));
+});
 </script>
