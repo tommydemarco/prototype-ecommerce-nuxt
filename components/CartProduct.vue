@@ -65,13 +65,17 @@ function decrement(product: CartProductType) {
 .imageContainer {
   flex-shrink: 0;
   position: relative;
-  padding-right: 10px;
+  margin-right: 10px;
   max-width: 80px;
+  border: 1px solid var(--color-dark-2);
+  border-radius: var(--border-radius);
 }
 
 .imageContainer img {
   max-width: 100%;
   height: auto;
+  border-radius: var(--border-radius);
+  display: block;
 }
 
 .totalPrice {
@@ -96,14 +100,13 @@ function decrement(product: CartProductType) {
   position: absolute;
   left: -5px;
   top: -5px;
-  padding: 5px;
+  padding: 4px 5px 5px;
   width: 27px;
   height: 27px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: none;
   font-size: 1.2rem;
   border: 1px solid var(--color-dark-2);
   background-color: var(--color-dark-1);
