@@ -4,7 +4,6 @@ export default defineEventHandler(async (event) => {
       return await fetchProductCategories(client);
     });
 
-    setResponseHeader(event, "Cache-Control", "no-store");
     return categories;
   } catch (error) {
     return sendError(

@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
       return await fetchStaticPageData(client, url!);
     });
 
-    setResponseHeader(event, "Cache-Control", "no-store");
     return pageData;
   } catch (error) {
     return sendError(

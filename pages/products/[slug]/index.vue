@@ -1,17 +1,29 @@
 <template>
-  <Head>
-    <!-- <title>{{ product.name }} | {{ appName }}</title>
-    <meta name="description" :content="product.description" /> -->
-  </Head>
-
-  <!-- <ProductDetails :product="product" />
-  <RelatedSlider title="Suggested products" :products="suggestedProducts" /> -->
+  <div>
+    <ProductDetails :product="productData?.product!" />
+    <RelatedSlider
+      title="Suggested products"
+      :products="productData?.suggestedProducts!"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute();
 const slug = route.params.slug as string;
 
-// const product = data.value?.product;
-// const suggestedProducts = data.value?.suggestedProducts;
+const { data: productData } = await useFetch(`/api/product-details`, {
+  server: true,
+  query: {
+    slug: slug,
+  },
+});
+
+//https://nuxt.com/docs/getting-started/error-handling#createerror
+if (!productData?.value?.product) {
+  throw createError({
+    statusCode: 404,
+    fatal: true,
+  });
+}
 </script>

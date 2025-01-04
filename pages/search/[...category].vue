@@ -45,7 +45,7 @@ onMounted(() => {
         const response = await $fetch("/api/categories");
         categories.value = response;
       } catch (error) {
-        createError({});
+        throw createError({ statusCode: 405, fatal: true });
       } finally {
         isCategoriesLoading.value = false;
       }
@@ -64,7 +64,11 @@ const queryParams = computed(() => ({
   searchText: (route.query["q"] || "") as string,
 }));
 
-const { data: searchResults, status: searchResultsStatus } = useAsyncData(
+const {
+  data: searchResults,
+  status: searchResultsStatus,
+  error: searchResultsError,
+} = useAsyncData(
   "searchResults",
   async () => {
     const query = new URLSearchParams(queryParams.value).toString();
@@ -74,8 +78,7 @@ const { data: searchResults, status: searchResultsStatus } = useAsyncData(
   { watch: [queryParams], server: false }
 );
 
-// Redirect to error page if fetch fails
-// if (productsError) {
-//   createError({});
-// }
+if (searchResultsError) {
+  throw createError({ statusCode: 405, fatal: true });
+}
 </script>

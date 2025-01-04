@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.cotainer">
+  <div :class="$style.container">
     <HeaderElement />
     <main :class="$style.main">
       <slot />

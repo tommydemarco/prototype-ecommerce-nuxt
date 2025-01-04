@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
     const highlightedProducts = featuredProductsData.slice(0, 3);
     const featuredProducts = featuredProductsData.slice(3);
 
-    setResponseHeader(event, "Cache-Control", "no-store");
     return { highlightedProducts, featuredProducts };
   } catch (error) {
     return sendError(
