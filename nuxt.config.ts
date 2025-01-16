@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     port: 4000,
   },
   modules: ["@nuxt/image"],
+  image: {
+    format: ["webp"],
+  },
   runtimeConfig: {
     mongodbURI: process.env.MONGODB_URI,
   },
