@@ -8,6 +8,11 @@ export default defineNuxtConfig({
   modules: ["@nuxt/image"],
   image: {
     format: ["webp"],
+    ipx: {
+      modifiers: {
+        format: "webp",
+      },
+    },
   },
   runtimeConfig: {
     mongodbURI: process.env.MONGODB_URI,
