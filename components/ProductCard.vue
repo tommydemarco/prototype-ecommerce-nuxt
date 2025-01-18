@@ -11,8 +11,8 @@
         width="400"
         height="400"
         :class="$style.mainImage"
-        :loading="priorityImage ? 'eager' : undefined"
-        :preload="priorityImage ? true : undefined"
+        :loading="!!priorityImage ? 'eager' : 'lazy'"
+        :preload="!!priorityImage"
       />
     </div>
     <div :class="$style.info">
