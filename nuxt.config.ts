@@ -14,6 +14,13 @@ export default defineNuxtConfig({
       },
     },
   },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: "en",
+      },
+    },
+  },
   runtimeConfig: {
     mongodbURI: process.env.MONGODB_URI,
   },

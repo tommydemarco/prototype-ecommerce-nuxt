@@ -5,6 +5,7 @@
         :class="$style.mainHighlighted"
         layoutType="rectangular"
         :product="mainHighlighted"
+        :priorityImage="true"
       />
     </div>
     <div :class="$style.rightColumn">
