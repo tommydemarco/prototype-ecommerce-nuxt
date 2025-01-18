@@ -9,7 +9,7 @@
           height="550"
           :class="$style.mainImage"
           loading="eager"
-          preload
+          :preload="true"
         />
         <div :class="$style.controls">
           <button
@@ -38,12 +38,13 @@
           ]"
           @click="currentImageIndex = index"
         >
-          <nuxt-img
+          <NuxtImg
             :src="image"
             :alt="`Thumbnail ${index + 1}`"
             width="80"
             height="80"
             :class="$style.thumbnail"
+            loading="lazy"
           />
         </div>
       </div>
