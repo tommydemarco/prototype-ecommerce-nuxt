@@ -10,6 +10,7 @@
           :class="$style.mainImage"
           loading="eager"
           :preload="true"
+          quality="80"
         />
         <div :class="$style.controls">
           <button
@@ -45,6 +46,7 @@
             height="80"
             :class="$style.thumbnail"
             loading="lazy"
+            quality="80"
           />
         </div>
       </div>
