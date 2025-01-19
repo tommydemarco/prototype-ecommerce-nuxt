@@ -28,7 +28,7 @@
           This prototype is part of a bachelor thesis project by Tommaso De
           Marco |
           <a
-            href="https://github.com/tommydemarco/prototype-ecommerce-next"
+            href="https://github.com/tommydemarco/prototype-ecommerce-nuxt"
             target="_blank"
           >
             View the source code
