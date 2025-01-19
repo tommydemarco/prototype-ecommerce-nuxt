@@ -10,10 +10,11 @@
     </div>
     <div :class="$style.rightColumn">
       <ProductCard
-        v-for="product in secondaryHighlighted"
+        v-for="(product, index) in secondaryHighlighted"
         :key="product.name"
         layoutType="rectangular"
         :product="product"
+        :priorityImage="index === 0 ? true : false"
       />
     </div>
   </div>

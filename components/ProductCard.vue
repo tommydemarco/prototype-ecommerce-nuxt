@@ -13,6 +13,7 @@
         :class="$style.mainImage"
         :loading="!!priorityImage ? 'eager' : 'lazy'"
         :preload="!!priorityImage"
+        quality="80"
       />
     </div>
     <div :class="$style.info">

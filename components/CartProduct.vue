@@ -8,6 +8,7 @@
         height="80"
         :class="$style.image"
         loading="lazy"
+        quality="80"
       />
       <button
         name="remove product"
