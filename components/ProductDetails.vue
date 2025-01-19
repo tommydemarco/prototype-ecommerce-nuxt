@@ -134,6 +134,7 @@ function addToCart() {
   height: auto;
   border-radius: 8px;
   background-color: var(--color-dark-1);
+  display: block;
 }
 
 .controls {
