@@ -25,7 +25,8 @@
       </div>
       <div :class="$style.bottomSection">
         <p>
-          &copy; 2024 Tommaso De Marco |
+          This prototype is part of a bachelor thesis project by Tommaso De
+          Marco |
           <a
             href="https://github.com/tommydemarco/prototype-ecommerce-next"
             target="_blank"
@@ -33,7 +34,10 @@
             View the source code
           </a>
         </p>
-        <p>Bachelor thesis project - prototype</p>
+        <p>
+          The placeholder product images are based on a photo by Sameer Kalani,
+          downloaded from Pexels.com
+        </p>
       </div>
     </div>
   </footer>
@@ -89,9 +93,14 @@ function scrollToTop() {
 .bottomSection {
   line-height: 1.5;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   padding-top: 1rem;
   justify-content: space-between;
+}
+
+.bottomSection p {
+  max-width: 400px;
+  text-align: left;
 }
 
 @media (max-width: 568px) {
