@@ -11,6 +11,8 @@
           loading="eager"
           :preload="true"
           quality="80"
+          sizes="sm:1000px"
+          densities="x1"
         />
         <div :class="$style.controls">
           <button
@@ -47,6 +49,8 @@
             :class="$style.thumbnail"
             loading="lazy"
             quality="80"
+            sizes="sm:160px"
+            densities="x1"
           />
         </div>
       </div>
@@ -162,7 +166,7 @@ function addToCart() {
 .thumbnails {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 25px;
   gap: 10px;
 }
 
@@ -215,11 +219,6 @@ function addToCart() {
 
   .controls {
     padding: 0;
-  }
-
-  .thumbnailContainer {
-    width: 60px;
-    height: 60px;
   }
 }
 </style>

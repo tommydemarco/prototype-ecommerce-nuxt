@@ -14,6 +14,8 @@
         :loading="!!priorityImage ? 'eager' : 'lazy'"
         :preload="!!priorityImage"
         quality="80"
+        sizes="sm:1000px"
+        densities="x1"
       />
     </div>
     <div :class="$style.info">
