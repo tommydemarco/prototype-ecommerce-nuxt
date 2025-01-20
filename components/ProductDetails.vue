@@ -220,10 +220,5 @@ function addToCart() {
   .controls {
     padding: 0;
   }
-
-  .thumbnailContainer {
-    width: 60px;
-    height: 60px;
-  }
 }
 </style>
