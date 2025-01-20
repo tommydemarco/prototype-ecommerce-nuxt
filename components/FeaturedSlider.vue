@@ -21,7 +21,7 @@ interface FeaturedSliderProps {
 defineProps<FeaturedSliderProps>();
 
 const sliderRef = ref<HTMLDivElement | null>(null);
-const animationRef = ref<number | null>(null);
+const intervalRef = ref<number | null>(null);
 const isHoveredRef = ref(false);
 
 onMounted(() => {
@@ -29,7 +29,8 @@ onMounted(() => {
   if (!slider) return;
 
   let scrollDirection = 1;
-  const speed = 8;
+  const speed = 2;
+  const intervalDuration = 50;
 
   const animateScroll = () => {
     if (!isHoveredRef.value) {
@@ -41,20 +42,23 @@ onMounted(() => {
 
       slider.scrollLeft += scrollDirection * speed;
     }
-    animationRef.value = requestAnimationFrame(animateScroll);
   };
 
-  const stopAnimation = () => (isHoveredRef.value = true);
-  const startAnimation = () => (isHoveredRef.value = false);
+  intervalRef.value = window.setInterval(animateScroll, intervalDuration);
 
-  animationRef.value = requestAnimationFrame(animateScroll);
+  const stopAnimation = () => {
+    isHoveredRef.value = true;
+  };
+  const startAnimation = () => {
+    isHoveredRef.value = false;
+  };
 
   slider.addEventListener("mouseenter", stopAnimation);
   slider.addEventListener("mouseleave", startAnimation);
 
   onBeforeUnmount(() => {
-    if (animationRef.value) {
-      cancelAnimationFrame(animationRef.value);
+    if (intervalRef.value !== null) {
+      clearInterval(intervalRef.value);
     }
     slider.removeEventListener("mouseenter", stopAnimation);
     slider.removeEventListener("mouseleave", startAnimation);
@@ -78,7 +82,6 @@ onMounted(() => {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
-  scroll-behavior: smooth;
 }
 
 .slider > * {
