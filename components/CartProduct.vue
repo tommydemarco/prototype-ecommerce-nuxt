@@ -9,6 +9,8 @@
         :class="$style.image"
         loading="lazy"
         quality="80"
+        sizes="sm:160px"
+        densities="x1"
       />
       <button
         name="remove product"
