@@ -14,7 +14,7 @@
         :loading="!!priorityImage ? 'eager' : 'lazy'"
         :preload="!!priorityImage"
         quality="80"
-        sizes="sm:1000px"
+        sizes="sm:800px"
         densities="x1"
       />
     </div>
