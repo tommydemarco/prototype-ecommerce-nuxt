@@ -34,9 +34,12 @@ onMounted(() => {
 
   const animateScroll = () => {
     if (!isHoveredRef.value) {
-      if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth) {
+      if (
+        slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - speed &&
+        scrollDirection === 1
+      ) {
         scrollDirection = -1;
-      } else if (slider.scrollLeft <= 0) {
+      } else if (slider.scrollLeft <= speed && scrollDirection === -1) {
         scrollDirection = 1;
       }
 
@@ -89,6 +92,7 @@ onMounted(() => {
   flex-wrap: nowrap;
   gap: 20px;
   scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 .slider > * {

@@ -3,7 +3,6 @@ export default defineEventHandler(async (event) => {
     const categories = await withMongoClient(async (client) => {
       return await fetchProductCategories(client);
     });
-    console.log("CSR: fetched categories");
 
     return categories;
   } catch (error) {
