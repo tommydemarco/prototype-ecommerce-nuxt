@@ -16,6 +16,7 @@ export default defineEventHandler(async (event) => {
         searchText: (searchText as string) || undefined,
       });
     });
+    console.log("CSR: fetched products");
 
     return products;
   } catch (error) {

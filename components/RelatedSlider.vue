@@ -50,4 +50,16 @@ defineProps<RelatedSliderProps>();
 .slider > * {
   min-width: 300px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .title,
+  .slider {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
 </style>

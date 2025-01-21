@@ -52,9 +52,14 @@ onMounted(() => {
   const startAnimation = () => {
     isHoveredRef.value = false;
   };
+  const handleTap = (event: MouseEvent | TouchEvent) => {
+    if (slider.contains(event.target as Node)) isHoveredRef.value = true;
+    else isHoveredRef.value = false;
+  };
 
   slider.addEventListener("mouseenter", stopAnimation);
   slider.addEventListener("mouseleave", startAnimation);
+  document.addEventListener("pointerdown", handleTap);
 
   onBeforeUnmount(() => {
     if (intervalRef.value !== null) {
@@ -62,6 +67,7 @@ onMounted(() => {
     }
     slider.removeEventListener("mouseenter", stopAnimation);
     slider.removeEventListener("mouseleave", startAnimation);
+    document.removeEventListener("pointerdown", handleTap);
   });
 });
 </script>
@@ -108,6 +114,13 @@ onMounted(() => {
   .slider > * {
     min-width: 58vw;
     aspect-ratio: 4/3.1 !important;
+  }
+}
+
+@media (max-width: 567px) {
+  .slider > * {
+    min-width: 67vw;
+    aspect-ratio: 4/3.4 !important;
   }
 }
 </style>
