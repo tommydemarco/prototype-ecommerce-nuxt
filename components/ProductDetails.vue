@@ -5,13 +5,13 @@
         <NuxtImg
           :src="productImages[currentImageIndex]"
           :alt="product.name"
-          width="550"
-          height="550"
+          width="400"
+          height="400"
           :class="$style.mainImage"
           loading="eager"
           :preload="true"
           quality="80"
-          sizes="sm:1000px"
+          sizes="sm:800px"
           densities="x1"
         />
         <div :class="$style.controls">
