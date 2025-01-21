@@ -5,7 +5,6 @@ export default defineEventHandler(async (event) => {
     const productData = await withMongoClient(async (client) => {
       const product = await fetchProduct(client, slug);
       const suggestedProducts = await fetchSuggestedProducts(client, slug);
-      console.log("SSR: Fetching product data");
       return { product, suggestedProducts };
     });
 

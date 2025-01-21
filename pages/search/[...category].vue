@@ -70,7 +70,6 @@ const { data: searchResults, status: searchResultsStatus } = useAsyncData(
     const query = new URLSearchParams(queryParams.value).toString();
     try {
       const response = await $fetch(`/api/products?${query}`);
-      console.log("CSR: Fetching products data");
       return response;
     } catch {
       return [];
