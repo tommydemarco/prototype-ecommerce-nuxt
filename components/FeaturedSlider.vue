@@ -82,6 +82,7 @@ onMounted(() => {
   display: flex;
   flex-wrap: nowrap;
   gap: 20px;
+  scroll-behavior: smooth;
 }
 
 .slider > * {
