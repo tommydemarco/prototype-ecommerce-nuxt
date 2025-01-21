@@ -79,7 +79,7 @@ function closeCart() {
   max-width: 100vw;
   background-color: var(--color-dark-1);
   border-left: 1px solid var(--color-dark-2);
-  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -87,6 +87,7 @@ function closeCart() {
 
 .cartDrawer.open {
   transform: translateX(-400px);
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .cartDrawer.closed {
