@@ -13,6 +13,7 @@
           quality="80"
           sizes="sm:800px"
           densities="x1"
+          decoding="sync"
         />
         <div :class="$style.controls">
           <button
@@ -51,6 +52,7 @@
             quality="80"
             sizes="sm:160px"
             densities="x1"
+            decoding="async"
           />
         </div>
       </div>
