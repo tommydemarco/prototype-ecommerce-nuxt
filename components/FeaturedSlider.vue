@@ -24,7 +24,16 @@ const sliderRef = ref<HTMLDivElement | null>(null);
 const intervalRef = ref<number | null>(null);
 const isHoveredRef = ref(false);
 
+function stopAnimation() {
+  isHoveredRef.value = true;
+}
+function startAnimation() {
+  isHoveredRef.value = false;
+}
+
 onMounted(() => {
+  // Based on the approach from https://www.geeksforgeeks.org/how-to-detect-touch-screen-device-using-javascript/
+  if ("ontouchstart" in window || navigator?.maxTouchPoints > 0) return;
   const slider = sliderRef.value;
   if (!slider) return;
 
@@ -48,30 +57,15 @@ onMounted(() => {
   };
 
   intervalRef.value = window.setInterval(animateScroll, intervalDuration);
-
-  const stopAnimation = () => {
-    isHoveredRef.value = true;
-  };
-  const startAnimation = () => {
-    isHoveredRef.value = false;
-  };
-  const handleTap = (event: MouseEvent | TouchEvent) => {
-    if (slider.contains(event.target as Node)) isHoveredRef.value = true;
-    else isHoveredRef.value = false;
-  };
-
   slider.addEventListener("mouseenter", stopAnimation);
   slider.addEventListener("mouseleave", startAnimation);
-  document.addEventListener("pointerdown", handleTap);
+});
 
-  onBeforeUnmount(() => {
-    if (intervalRef.value !== null) {
-      clearInterval(intervalRef.value);
-    }
-    slider.removeEventListener("mouseenter", stopAnimation);
-    slider.removeEventListener("mouseleave", startAnimation);
-    document.removeEventListener("pointerdown", handleTap);
-  });
+onBeforeUnmount(() => {
+  if ("ontouchstart" in window || navigator?.maxTouchPoints > 0) return;
+  if (intervalRef.value !== null) clearInterval(intervalRef.value);
+  sliderRef.value?.removeEventListener("mouseenter", stopAnimation);
+  sliderRef.value?.removeEventListener("mouseleave", startAnimation);
 });
 </script>
 

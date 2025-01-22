@@ -14,12 +14,7 @@
 <script setup>
 const { data: featuredProductsData } = await useFetch(
   `/api/featured-products`,
-  {
-    server: true,
-    query: {
-      url: "privacy-policy",
-    },
-  }
+  { server: true }
 );
 
 useHead({
