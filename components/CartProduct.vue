@@ -11,6 +11,7 @@
         quality="80"
         sizes="sm:160px"
         densities="x1"
+        decoding="async"
       />
       <button
         name="remove product"

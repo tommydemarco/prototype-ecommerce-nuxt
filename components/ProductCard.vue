@@ -16,6 +16,7 @@
         quality="80"
         sizes="sm:800px"
         densities="x1"
+        :decoding="!!priorityImage ? 'sync' : 'async'"
       />
     </div>
     <div :class="$style.info">
